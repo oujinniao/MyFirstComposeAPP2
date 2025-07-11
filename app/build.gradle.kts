@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation("com.airbnb.android:lottie-compose:5.2.0")
+    implementation("androidx.compose.material:material-icons-extended-android:1.7.8")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
