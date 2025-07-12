@@ -24,7 +24,7 @@ import com.example.myfirstcomposeapp.R
 @Preview(showBackground = true)
 @Composable
 fun MyImage() {
-    Image(painter = painterResource(R.drawable.perfildewsp),
+    Image(painter = painterResource(R.drawable.person_24),
         contentDescription = "image profile",
         modifier = Modifier
         .size(300.dp)

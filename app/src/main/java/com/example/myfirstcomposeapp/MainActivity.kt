@@ -6,52 +6,27 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.FabPosition
 import androidx.compose.ui.Modifier
 import com.example.myfirstcomposeapp.ui.theme.MyFirstComposeAPPTheme
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TriStateCheckbox
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import com.example.myfirstcomposeapp.components.CheckInfo
 import com.example.myfirstcomposeapp.components.MyNavigationBar
-import com.example.myfirstcomposeapp.components.Progress
-import com.example.myfirstcomposeapp.components.ProgressAnimation
-import com.example.myfirstcomposeapp.components.layout.CountrySelectorDropdown
 import com.example.myfirstcomposeapp.components.layout.MyButtonExample
-import com.example.myfirstcomposeapp.components.layout.MyCheckBox
-import com.example.myfirstcomposeapp.components.layout.MyDropDownItem
-import com.example.myfirstcomposeapp.components.layout.MyDropDownMenu
-import com.example.myfirstcomposeapp.components.layout.MyExposedDropDownMenu
-import com.example.myfirstcomposeapp.components.layout.MyRadioButton
-import com.example.myfirstcomposeapp.components.layout.MyRadioButtonList
-import com.example.myfirstcomposeapp.components.layout.MySwitch
-import com.example.myfirstcomposeapp.components.layout.ParentCheckBox
-import com.example.myfirstcomposeapp.components.layout.TriStateChecBox
-import com.example.myfirstcomposeapp.components.sliders.MyRangeSlider
-import com.example.myfirstcomposeapp.components.sliders.MySliders
-import com.example.myfirstcomposeapp.components.sliders.MySlidersAdvance
+import com.example.myfirstcomposeapp.components.state.MyModalDrawer
 import com.example.myfirstcomposeapp.components.state.MyTopAppBar
-import com.example.myfirstcomposeapp.login.Greeting
-import com.example.myfirstcomposeapp.scaffold.MyScaffoldScreen
-import com.example.myfirstcomposeapp.scaffold.MyTasksScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import java.lang.reflect.Parameter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,49 +34,62 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyFirstComposeAPPTheme {
-                val snackbarHostState= remember{SnackbarHostState()}
+                val drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+                val snackbarHostState = remember { SnackbarHostState() }
                 val scope: CoroutineScope = rememberCoroutineScope()
 
-               Scaffold (modifier = Modifier.fillMaxSize(),
-                   topBar = {MyTopAppBar()},
-                   snackbarHost = {SnackbarHost(hostState = snackbarHostState)},
-                   floatingActionButton = {MyButtonExample()},
-                   floatingActionButtonPosition = FabPosition.Center,
-                   bottomBar = {MyNavigationBar()},
-                   containerColor = Color.Red,
-                   contentColor = Color.White,
+                MyModalDrawer(drawerState= drawerState) {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            MyTopAppBar(
+                                onMenuClick = { scope.launch { drawerState.open()}})
+                        },
+                        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+                        floatingActionButton = { MyButtonExample() },
+                        floatingActionButtonPosition = FabPosition.Center,
+                        bottomBar = { MyNavigationBar() },
+                        containerColor = Color.Red,
+                        contentColor = Color.White,
 
 
-                   ){innerPadding ->
+                        ) { innerPadding ->
 
-                   Box(
-                       modifier = Modifier.fillMaxSize()
-                           .background(Color.Blue)
-                           .padding(innerPadding),
+                        Box(
+                            modifier = Modifier.fillMaxSize()
+                                .background(Color.Blue)
+                                .padding(innerPadding),
 
-                       contentAlignment = Alignment.Center
-                   ){
-                    Text("My screen",modifier=Modifier.clickable {
-                        scope.launch {
-                            val result:SnackbarResult=snackbarHostState.showSnackbar(
-                                message = "Has pulsado en el texto", actionLabel = "Deshacer")
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("My screen", modifier = Modifier.clickable {
+                                scope.launch {
+                                    val result: SnackbarResult = snackbarHostState.showSnackbar(
+                                        message = "Has pulsado en el texto",
+                                        actionLabel = "Deshacer"
+                                    )
+                                    when(result) {
+                                        SnackbarResult.Dismissed -> println(("Has pulsado en dismiss"))
+                                        SnackbarResult.ActionPerformed -> println("Has pulsado en action")
 
+                                    }
+
+                                }
+                            })
                         }
-                    })
-                   }
 
-                // Surface(modifier = Modifier.fillMaxSize(),
-                 //   color = MaterialTheme.colorScheme.background
-                //) {
-                    //var status by rememberSaveable { mutableStateOf(false) }
-                    //val checkInfo = CheckInfo(title = "Hola, box correcto",selected = status,
-                      //  onCheckedChange = { myNewStatus -> status = myNewStatus }
-                    //)
-                    //Column(modifier = Modifier.fillMaxSize()) {
+                        // Surface(modifier = Modifier.fillMaxSize(),
+                        //   color = MaterialTheme.colorScheme.background
+                        //) {
+                        //var status by rememberSaveable { mutableStateOf(false) }
+                        //val checkInfo = CheckInfo(title = "Hola, box correcto",selected = status,
+                        //  onCheckedChange = { myNewStatus -> status = myNewStatus }
+                        //)
+                        //Column(modifier = Modifier.fillMaxSize()) {
                         // ¡Aquí está el cambio! De 'MyCustomCheckb()' a 'MyCustomCheckbox()'
                         //MyCheckBox()
                         // Si quieres mostrar el MySwitch también:
-                         //MySwitch()
+                        //MySwitch()
 
                         //MyRadioButton()
                         //MyRadioButtonList()
@@ -115,13 +103,14 @@ class MainActivity : ComponentActivity() {
                         //MyScaffoldScreen()
                         //MyTasksScreen()
                         //MyTasksScreenWithDrawer()
-                        MyTopAppBar()
+                        MyTopAppBar(onMenuClick = { scope.launch { drawerState.open() } })
 
                     }
                 }
             }
         }
     }
+}
 
   //  @Composable
     //fun MyStateExample() {

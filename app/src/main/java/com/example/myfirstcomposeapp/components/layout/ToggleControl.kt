@@ -29,9 +29,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
-import com.example.myfirstcomposeapp.R.drawable.persona
+import com.example.myfirstcomposeapp.R.drawable.person_24
 import com.example.myfirstcomposeapp.components.CheckBoxState
-import kotlinx.coroutines.selects.select
+
 
 @Composable
 fun MySwitch(modifier: Modifier = Modifier) {
@@ -42,7 +42,7 @@ fun MySwitch(modifier: Modifier = Modifier) {
             onCheckedChange = { switchState = it },
             thumbContent = {
                 Icon(
-                    painter = painterResource(id = persona),
+                    painter = painterResource(id = person_24),
                     contentDescription = "Imagen de persona",
                 )
             }, enabled = true,
