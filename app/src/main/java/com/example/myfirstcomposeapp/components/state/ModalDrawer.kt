@@ -21,8 +21,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.myfirstcomposeapp.components.model.DrawerItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.nio.file.Files.list
 
 
 @Composable
@@ -30,6 +32,12 @@ import kotlinx.coroutines.launch
 fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
 
     val scope: CoroutineScope = rememberCoroutineScope()
+    val myItems :List<DrawerItem> =listOf(
+        DrawerItem(title = "Opción 1", icon = Icons.Default.Home, notification = 0),
+        DrawerItem(title = "Opción 2", icon = Icons.Default.Home, notification = 0),
+        DrawerItem(title = "Opción 3", icon = Icons.Default.Home, notification = 0)
+
+    )
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -48,23 +56,7 @@ fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
 
 
             {
-                Spacer(Modifier.height(32.dp))
-                NavigationDrawerItem(
-                    label = { Text(text = "Opción 1") },
-                    selected = false,
-                    onClick = { },
-                    icon = { Icon(imageVector = Icons.Default.Home, contentDescription = null) },
-                    badge = { Badge { Text(text = "1") } },
-                    shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.clickable { scope.launch { drawerState.close() } },
-                    colors = NavigationDrawerItemDefaults.colors(
-                        selectedContainerColor = Color.Red,
-                        selectedTextColor = Color.White,
-                        selectedIconColor = Color.White,
-                        unselectedBadgeColor = Color.Magenta
-
-                    )
-                )
+                
                 Spacer(Modifier.height(32.dp))
                 NavigationDrawerItem(
                     label = { Text(text = "Opción 1") },
