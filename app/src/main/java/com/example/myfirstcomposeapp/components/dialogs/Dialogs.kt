@@ -169,6 +169,7 @@ fun MyTimePicker(modifier: Modifier=Modifier) {
                 TimePicker(timePickerState,
                     layoutType = TimePickerLayoutType.Vertical,
                     colors = TimePickerDefaults.colors(
+
                         clockDialColor = Color.Green,
                         clockDialSelectedContentColor = Color.Red,
                         selectorColor = Color.Blue,

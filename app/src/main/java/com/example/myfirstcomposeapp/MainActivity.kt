@@ -19,6 +19,9 @@ import androidx.compose.runtime.Composable // Importar Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview // Importar Preview
+import com.example.myfirstcomposeapp.components.advance.InteractionSourceExample
+import com.example.myfirstcomposeapp.components.advance.MyInteractiveButton
+
 import com.example.myfirstcomposeapp.components.dialogs.MyAlertDialogExample
 import com.example.myfirstcomposeapp.components.dialogs.MyDateDialog
 import com.example.myfirstcomposeapp.components.dialogs.MyDialog
@@ -66,7 +69,9 @@ class MainActivity : ComponentActivity() {
                         //MyAlertDialogExample()
                         //MyDialog()
                         //MyDateDialog()
-                        MyTimePicker()
+                        //MyTimePicker()
+                        //MyInteractiveButton()
+                        InteractionSourceExample()
 
                     }
                 }
