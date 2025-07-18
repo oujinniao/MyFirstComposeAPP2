@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview // Importar Preview
 import com.example.myfirstcomposeapp.components.advance.DerivedStateOfExample
 import com.example.myfirstcomposeapp.components.advance.InteractionSourceExample
+import com.example.myfirstcomposeapp.components.advance.LazyColumnExample
 import com.example.myfirstcomposeapp.components.advance.MyDerivedStateOf
 import com.example.myfirstcomposeapp.components.advance.MyInteractiveButton
 
@@ -84,7 +85,8 @@ class MainActivity : ComponentActivity() {
                         //MyScreenWithOneTimeEffect()
                         //DerivedStateOfExample()
                         //MyDerivedStateOf()
-                        ChecklistExampleWithDerivedState()
+                        //ChecklistExampleWithDerivedState()
+                        LazyColumnExample()
 
                     }
                 }
