@@ -68,3 +68,5 @@ fun LazyColumnExample(modifier:Modifier=Modifier) {
     }
 }
 
+//lista de 1.000 items que se puede desplazar suavemente, aunque hay muchos ítems, la aplicación
+//seguira siendo fluida porque lazyColumn solo dibuja los que son visibles
