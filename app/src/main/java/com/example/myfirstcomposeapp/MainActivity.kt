@@ -1,5 +1,8 @@
 package com.example.myfirstcomposeapp
 
+import ChecklistExampleWithDerivedState
+import MyLaunchedEffect
+import MyScreenWithOneTimeEffect
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,8 +22,12 @@ import androidx.compose.runtime.Composable // Importar Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview // Importar Preview
+import com.example.myfirstcomposeapp.components.advance.DerivedStateOfExample
 import com.example.myfirstcomposeapp.components.advance.InteractionSourceExample
+import com.example.myfirstcomposeapp.components.advance.MyDerivedStateOf
 import com.example.myfirstcomposeapp.components.advance.MyInteractiveButton
+
+import com.example.myfirstcomposeapp.components.advance.MyScreenWithEffect
 
 import com.example.myfirstcomposeapp.components.dialogs.MyAlertDialogExample
 import com.example.myfirstcomposeapp.components.dialogs.MyDateDialog
@@ -47,8 +54,8 @@ class MainActivity : ComponentActivity() {
                     // Un Column para centrar el Composable que quieres probar
                     Box(
                         modifier = Modifier.fillMaxSize(),
-                        //verticalArrangement = Arrangement.Center,
-                        //horizontalAlignment = Alignment.CenterHorizontally
+                        contentAlignment = Alignment.Center
+
                     ) {
                         // ¡Aquí es donde pones el Composable que quieres probar!
                         // Por ejemplo, tu ejemplo de Badge:
@@ -71,7 +78,13 @@ class MainActivity : ComponentActivity() {
                         //MyDateDialog()
                         //MyTimePicker()
                         //MyInteractiveButton()
-                        InteractionSourceExample()
+                        //InteractionSourceExample()
+                        //MyScreenWithEffect()
+                        //MyLaunchedEffect{}
+                        //MyScreenWithOneTimeEffect()
+                        //DerivedStateOfExample()
+                        //MyDerivedStateOf()
+                        ChecklistExampleWithDerivedState()
 
                     }
                 }
