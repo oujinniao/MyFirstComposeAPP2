@@ -29,6 +29,8 @@ import com.example.myfirstcomposeapp.components.advance.LazyColumnExample // Imp
 import com.example.myfirstcomposeapp.components.advance.ListItemData // Importar ListItemData
 import com.example.myfirstcomposeapp.components.advance.MyAdvanceList
 import com.example.myfirstcomposeapp.components.advance.MyGridList
+import com.example.myfirstcomposeapp.components.advance.MyHorizontalGridList
+import com.example.myfirstcomposeapp.components.advance.ProductGridExample
 
 import kotlinx.coroutines.launch // Importar launch para coroutines
 import kotlin.random.Random
@@ -57,7 +59,11 @@ class MainActivity : ComponentActivity() {
                         //MyBasicList{}
 
                         //MyAdvanceList()
-                        MyGridList()
+                        //MyGridList()
+                        //MyHorizontalGridList()
+                        ProductGridExample()
+
+
                            // onItemClick = { clickedItem: ListItemData ->
                                 // Cuando se haga clic en un ítem, mostrar un Snackbar
                                 //scope.launch {
