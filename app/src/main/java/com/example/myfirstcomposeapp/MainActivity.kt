@@ -1,39 +1,18 @@
 package com.example.myfirstcomposeapp
 
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold // Importar Scaffold
-import androidx.compose.material3.SnackbarHost // Importar SnackbarHost
-import androidx.compose.material3.SnackbarHostState // Importar SnackbarHostState
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember // Importar remember
-import androidx.compose.runtime.rememberCoroutineScope // Importar rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import com.example.myfirstcomposeapp.ui.theme.MyFirstComposeAPPTheme
-import com.example.myfirstcomposeapp.components.advance.LazyColumnExample // Importar LazyColumnExample
-import com.example.myfirstcomposeapp.components.advance.ListItemData // Importar ListItemData
-import com.example.myfirstcomposeapp.components.advance.MyAdvanceList
-import com.example.myfirstcomposeapp.components.advance.MyGridList
-import com.example.myfirstcomposeapp.components.advance.MyHorizontalGridList
-import com.example.myfirstcomposeapp.components.advance.ProductGridExample
-
-import kotlinx.coroutines.launch // Importar launch para coroutines
-import kotlin.random.Random
+import androidx.compose.foundation.layout.fillMaxSize // Importar fillMaxSize
+import androidx.compose.material3.MaterialTheme // Importar MaterialTheme
+import androidx.compose.material3.Surface // Importar Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable // Importar Composable
+import androidx.compose.ui.Modifier // Importar Modifier
+import androidx.compose.ui.text.input.KeyboardType.Companion.Text
+import androidx.compose.ui.tooling.preview.Preview // Importar Preview para la previsualización
+import com.example.myfirstcomposeapp.ui.theme.MyFirstComposeAPPTheme // Importa tu tema
+import com.example.myfirstcomposeapp.components.navigation.NavigationWrapper // ¡Importar NavigationWrapper!
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,37 +20,31 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyFirstComposeAPPTheme {
-                // Estado y Scope para el Snackbar
-                val snackbarHostState = remember { SnackbarHostState() }
-                val scope = rememberCoroutineScope()
-
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) } // Colocar el SnackbarHost
-                ) { innerPadding -> // Recibir el padding del Scaffold
-                    Surface(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding), // Aplicar el padding al Surface
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        // Llamar a LazyColumnExample y pasarle la lambda onItemClick
-                        //MyBasicList{}
-
-                        //MyAdvanceList()
-                        //MyGridList()
-                        //MyHorizontalGridList()
-                        ProductGridExample()
-
-
-                           // onItemClick = { clickedItem: ListItemData ->
-                                // Cuando se haga clic en un ítem, mostrar un Snackbar
-                                //scope.launch {
-                                   // snackbarHostState.showSnackbar("Clic en: ${clickedItem.title}")
-                                }
-                            }
-
-                    }
+                // Surface es un contenedor básico que aplica el tema de Material Design
+                Surface(
+                    modifier = Modifier.fillMaxSize(), // Ocupa toda la pantalla
+                    color = MaterialTheme.colorScheme.background // Usa el color de fondo del tema
+                ) {
+                    // ¡Aquí es donde llamas a tu Composable principal de navegación!
+                    NavigationWrapper()
                 }
             }
         }
+    }
+}
+
+// --- Preview para MainActivity (Opcional) ---
+@Preview(showBackground = true, name = "MainActivity Preview")
+@Composable
+fun MainActivityPreview() {
+    MyFirstComposeAPPTheme {
+        // En la Preview, puedes simular el contenido que esperas ver
+        // o simplemente llamar a un Composable básico para verificar que el tema funciona.
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Text("MainActivity Preview: NavigationWrapper will go here")
+        }
+    }
+}
