@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    // Kotlin Serialization Plugin: ¡Añadido!
-    alias(libs.plugins.kotlin.serialization) // <-- Añade esta línea
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -69,8 +68,14 @@ dependencies {
     // DataStore Preferences
     implementation(libs.androidx.datastore.preferences)
 
-    // Kotlin Serialization Library: ¡Añadido!
-    implementation(libs.kotlinx.serialization.json) // <-- Añade esta línea
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
+    implementation(libs.foundation.layout.android)
 
     // Dependencias de prueba
     testImplementation(libs.junit)

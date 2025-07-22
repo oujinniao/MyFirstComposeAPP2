@@ -1,5 +1,6 @@
 package com.example.myfirstcomposeapp.components.navigation.examples
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,23 +12,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController // ¡Importar NavHostController!
-import com.example.myfirstcomposeapp.components.navigation.Home // ¡Importar objeto Home!
+import androidx.compose.ui.graphics.Color // Importar Color
 import androidx.compose.foundation.layout.Arrangement // Importar Arrangement
 
 @Composable
-fun LoginScreen(navController: NavHostController, modifier: Modifier =Modifier) { // ¡Recibimos navController!
-    Column(modifier = modifier.fillMaxSize()
-        , horizontalAlignment = Alignment.CenterHorizontally,
+fun DetailScreen(id: String, navigateBack: () -> Unit, modifier: Modifier = Modifier){ // ¡Recibe id y navigateBack!
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Blue), // Color diferente para distinguirla
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center // Centrar el contenido verticalmente
     ){
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "LOGIN",fontSize = 30.sp)
+        Text(text = "Detail Screen: $id",fontSize = 30.sp) // Muestra el ID recibido
         Spacer(modifier = Modifier.weight(1f))
-        Button(onClick = {
-            navController.navigate(Home) // Navegar a Home
-        }) {
-            Text(text = "Ir a Home")
+        Button(onClick = navigateBack){ // ¡Usa la lambda para regresar!
+            Text(text = "Regresar")
         }
         Spacer(modifier = Modifier.weight(1f))
     }
