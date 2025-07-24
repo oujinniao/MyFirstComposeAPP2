@@ -29,9 +29,9 @@ import androidx.compose.ui.graphics.Color // ¡Importar Color correctamente!
 
 @Composable
 fun HomeScreen(
-    navigateBack: () -> Unit, // Callback para navegar hacia atrás
-    navigateToDetail: (String) -> Unit, // Callback para navegar a detalles, pasando un String
-    modifier: Modifier = Modifier // Mantener el modificador para flexibilidad
+    navigateBack: () -> Unit,
+    navigateToDetail: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var text by remember { mutableStateOf("") } // Declarar el estado para el TextField
 

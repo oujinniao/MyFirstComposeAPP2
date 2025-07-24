@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -34,50 +35,42 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs += listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
     }
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.12"
+    }
 }
 
 dependencies {
-    // Dependencias de AndroidX y Compose UI
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Dependencias de Coil
     implementation(libs.coil.compose)
 
-    // Otras librerías
     implementation("com.airbnb.android:lottie-compose:5.2.0")
     implementation("androidx.compose.material:material-icons-extended-android:1.7.8")
     implementation(libs.androidx.foundation.layout.android)
 
-    // ConstraintLayout Compose
     implementation(libs.constraint.layout.compose)
 
-    // Dependencia de Navigation Compose
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.serialization)
 
-    // DataStore Preferences
     implementation(libs.androidx.datastore.preferences)
 
-
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.foundation.layout.android)
-    implementation(libs.foundation.layout.android)
-    implementation(libs.foundation.layout.android)
-    implementation(libs.foundation.layout.android)
-    implementation(libs.foundation.layout.android)
-    implementation(libs.foundation.layout.android)
 
-    // Dependencias de prueba
+    implementation(libs.androidx.core.splashscreen)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

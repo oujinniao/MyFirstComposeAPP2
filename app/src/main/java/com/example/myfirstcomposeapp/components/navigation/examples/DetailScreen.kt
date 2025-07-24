@@ -14,9 +14,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.Color // Importar Color
 import androidx.compose.foundation.layout.Arrangement // Importar Arrangement
+import com.example.myfirstcomposeapp.components.navigation.examples.model.SettingModel
 
 @Composable
-fun DetailScreen(id: String, navigateBack: () -> Unit, modifier: Modifier = Modifier){ // ¡Recibe id y navigateBack!
+fun DetailScreen(
+    id: String,
+    navigateToSettings: (SettingModel) -> Unit,
+    navigateBack: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    var settingModel= SettingModel("Oujiniao",true)
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -25,10 +33,10 @@ fun DetailScreen(id: String, navigateBack: () -> Unit, modifier: Modifier = Modi
         verticalArrangement = Arrangement.Center // Centrar el contenido verticalmente
     ){
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "Detail Screen: $id",fontSize = 30.sp) // Muestra el ID recibido
+        Text(text = "DETAIL: $id",fontSize = 30.sp) // Muestra el ID recibido
         Spacer(modifier = Modifier.weight(1f))
-        Button(onClick = navigateBack){ // ¡Usa la lambda para regresar!
-            Text(text = "Regresar")
+        Button(onClick = {navigateToSettings(settingModel)}){
+            Text(text = "Ir a Ajustes")
         }
         Spacer(modifier = Modifier.weight(1f))
     }

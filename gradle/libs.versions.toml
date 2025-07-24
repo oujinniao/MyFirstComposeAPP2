@@ -1,24 +1,24 @@
 [versions]
 agp = "8.8.0"
 coil = "2.6.0"
-kotlin = "2.0.0"
+kotlin = "2.0.0" # Tu versión de Kotlin
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+composeBom = "2024.04.01" # BOM de Compose
+# Para Kotlin 2.0.0 y Compose BOM 2024.04.01, el compilador de Compose compatible es 1.5.12.
+
 constraintLayoutCompose = "1.1.1"
 foundationLayoutAndroid = "1.6.6"
-navigationCompose = "2.9.0" # Tu versión de navigation-compose
-
-navigationSerialization = "2.9.0" # <-- Usamos la misma versión que navigationCompose
+navigationCompose = "2.8.0" # <-- ¡CAMBIO CLAVE! Alineado a 2.8.0
+navigationSerialization = "2.8.0" # <-- ¡CAMBIO CLAVE! Alineado a 2.8.0 (esta sí existe)
 datastorePreferences = "1.1.1"
-
-
-kotlinxSerializationJson = "1.7.3"
-foundationLayoutAndroidVersion = "1.7.2"
+kotlinxSerializationJson = "1.7.3" # Versión compatible con Navigation Compose 2.8.0
+splashscreen = "1.0.1"
+kotlinParcelizePlugin = "2.0.0" # Alineado con la versión de Kotlin
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,14 +39,14 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 constraint-layout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintLayoutCompose" }
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-
-androidx-navigation-serialization = { group = "androidx.navigation", name = "navigation-serialization", version.ref = "navigationSerialization" } # <-- ¡Añadida!
+androidx-navigation-serialization = { group = "androidx.navigation", name = "navigation-serialization", version.ref = "navigationSerialization" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroidVersion" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.24" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinParcelizePlugin" }
