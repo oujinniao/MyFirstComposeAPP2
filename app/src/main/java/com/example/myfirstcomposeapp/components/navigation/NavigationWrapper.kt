@@ -6,10 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute // Importar toRoute
 import com.example.myfirstcomposeapp.components.navigation.examples.HomeScreen
 import com.example.myfirstcomposeapp.components.navigation.examples.LoginScreen
-import com.example.myfirstcomposeapp.components.navigation.Home // Importar objeto Home
-import com.example.myfirstcomposeapp.components.navigation.Login // Importar objeto Login
+import com.example.myfirstcomposeapp.components.navigation.examples.DetailScreen
 
 @Composable
 fun NavigationWrapper() {
@@ -21,7 +21,16 @@ fun NavigationWrapper() {
         }
         composable<Home> {
             // ¡Pasamos el navController a HomeScreen!
-            HomeScreen(navController = navController)
+            HomeScreen(
+                navigateBack = { navController.popBackStack() },
+                navigateToDetail = { navController.navigate(Detail(id = it)) })
+
+            composable<Detail> { navBackStackEntry ->
+                var detail: Detail = navBackStackEntry.toRoute<Detail>()
+
+                DetailScreen(id=detail.id,// ¡Pasamos el id a DetailScreen!
+                    navigateBack = { navController.popBackStack() })//
+            }
         }
     }
 }

@@ -1,20 +1,24 @@
 [versions]
 agp = "8.8.0"
 coil = "2.6.0"
-kotlin = "2.0.0" # <-- Asegúrate de que esta sea la versión de tu plugin de Kotlin
+kotlin = "2.0.0" # Tu versión de Kotlin
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+composeBom = "2024.04.01" # BOM de Compose
+# Para Kotlin 2.0.0 y Compose BOM 2024.04.01, el compilador de Compose compatible es 1.5.12.
+
 constraintLayoutCompose = "1.1.1"
 foundationLayoutAndroid = "1.6.6"
-navigationCompose = "2.9.2"
+navigationCompose = "2.8.0" # <-- ¡Asegúrate de que sea 2.8.0!
+
 datastorePreferences = "1.1.1"
-# Kotlin Serialization: ¡Añadido!
-kotlinxSerializationJson = "1.7.1" # <-- Versión de la librería de serialización JSON
+kotlinxSerializationJson = "1.7.3" # <-- ¡Asegúrate de que sea 1.7.3!
+splashscreen = "1.0.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,12 +40,13 @@ constraint-layout-compose = { group = "androidx.constraintlayout", name = "const
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
-# Kotlin Serialization: ¡Añadido!
-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" } # <-- Añade esta línea
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.24" } # <-- Si tu version.ref="kotlin" es 2.0.0, aquí debe ser "2.0.0"
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-# Kotlin Serialization Plugin: ¡Añadido!
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" } # <-- Añade esta línea
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+kotlin-parcelize = { id = "kotlin-parcelize" }
