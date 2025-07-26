@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable // Importar Composable
 import androidx.compose.ui.Modifier // Importar Modifier
 import androidx.compose.ui.text.input.KeyboardType.Companion.Text
 import androidx.compose.ui.tooling.preview.Preview // Importar Preview para la previsualización
-import com.example.myfirstcomposeapp.animation.ColorAnimationExample
+
 import com.example.myfirstcomposeapp.animation.MyAnimatedVisibility
 import com.example.myfirstcomposeapp.ui.theme.MyFirstComposeAPPTheme // Importa tu tema
 import com.example.myfirstcomposeapp.components.navigation.NavigationWrapper // ¡Importar NavigationWrapper!
@@ -30,7 +30,8 @@ class MainActivity : ComponentActivity() {
                     // ¡Aquí es donde llamas a tu Composable principal de navegación!
                     //NavigationWrapper()
                     //MyAnimatedVisibility()
-                    ColorAnimationExample()
+                    //ColorAnimationExample()
+                    FullAnimatedAsState()
                 }
             }
         }
