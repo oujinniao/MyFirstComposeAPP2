@@ -1,3 +1,57 @@
+// --- RESUMEN DE FUNCIONES DE ANIMACIÓN DE JETPACK COMPOSE USADAS EN ESTE EJEMPLO ---
+//
+// 1. animateXAsState (Familia de funciones)
+//    - animateColorAsState: Anima suavemente un cambio de Color.
+//    - animateDpAsState: Anima suavemente un cambio de valor Dp (unidades de densidad de píxeles, ej. tamaño, padding).
+//    - animateFloatAsState: Anima suavemente un cambio de valor Float (ej. opacidad, rotación, escala).
+//    - animateOffsetAsState: Anima suavemente un cambio de Offset (posición X, Y).
+//    * Uso: val animValue by animateXAsState(targetValue = ...)
+//    * Propósito: Animaciones implícitas de un solo valor.
+//
+// 2. AnimatedContent
+//    - Composable principal para animar la transición entre diferentes bloques de contenido.
+//    - Observa un 'targetState' y, cuando cambia, aplica animaciones de entrada y salida al contenido.
+//    * Uso: AnimatedContent(targetState = miEstado) { contenidoQueCambia }
+//    * Propósito: Transiciones animadas entre vistas o estados de UI completos.
+//
+// 3. transitionSpec (Parámetro de AnimatedContent)
+//    - Define cómo se transforma el contenido antiguo al salir y el nuevo contenido al entrar.
+//    - Es una lambda que devuelve un 'ContentTransform'.
+//    * Uso: transitionSpec = { EnterTransition togetherWith ExitTransition }
+//    * Propósito: Personalizar el tipo de animación (desvanecimiento, deslizamiento, escala, etc.).
+//
+// 4. ContentTransform
+//    - Es el tipo de objeto que define la combinación de animaciones de entrada y salida.
+//    - Se construye combinando 'EnterTransition' y 'ExitTransition' con 'togetherWith'.
+//
+// 5. togetherWith (Operador Infix)
+//    - Combina una animación de entrada (EnterTransition) con una animación de salida (ExitTransition).
+//    * Uso: (fadeIn() + slideInVertically()) togetherWith (fadeOut() + slideOutVertically())
+//    * Propósito: Sincronizar cómo el contenido antiguo desaparece y el nuevo aparece.
+//
+// 6. Animaciones de Entrada (EnterTransition)
+//    - fadeIn(): El contenido aparece desvaneciéndose (cambia su opacidad de 0 a 1).
+//    - slideInHorizontally(): El contenido aparece deslizándose horizontalmente.
+//    - slideInVertically(): El contenido aparece deslizándose verticalmente.
+//    - scaleIn(): El contenido aparece escalándose (crece desde un tamaño inicial).
+//    * Uso: fadeIn(animationSpec = tween(500))
+//
+// 7. Animaciones de Salida (ExitTransition)
+//    - fadeOut(): El contenido desaparece desvaneciéndose (cambia su opacidad de 1 a 0).
+//    - slideOutHorizontally(): El contenido desaparece deslizándose horizontalmente.
+//    - slideOutVertically(): El contenido desaparece deslizándose verticalmente.
+//    - scaleOut(): El contenido desaparece escalándose (se encoge hasta un tamaño final).
+//    * Uso: fadeOut(animationSpec = tween(500))
+//
+// 8. tween (AnimationSpec)
+//    - Una especificación de animación que define una duración fija para la animación.
+//    - Es el tipo más común para animaciones con un tiempo específico.
+//    * Uso: tween(durationMillis = 500)
+//    * Propósito: Controlar la velocidad y duración de la animación.
+//
+// ----------------------------------------------------------------------------------
+
+
 package com.example.myfirstcomposeapp.animation // Asegúrate de que este sea el paquete correcto
 
 import androidx.compose.animation.AnimatedContent
