@@ -33,7 +33,7 @@ fun MyAnimateContent(modifier: Modifier = Modifier) {
     var number by remember { mutableStateOf(0) }
 
     Column(
-        modifier = modifier.fillMaxSize().padding(top = 48.dp),
+        modifier = modifier.fillMaxSize().padding(top = 50.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
